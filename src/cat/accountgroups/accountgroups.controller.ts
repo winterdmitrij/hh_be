@@ -1,16 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AccountgroupsService } from './accountgroups.service';
-import { CreateAccountgroupDto } from './dto/create-accountgroup.dto';
-import { UpdateAccountgroupDto } from './dto/update-accountgroup.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { Accountgroup } from './accountgroup.entity';
 
 @Controller('accountgroups')
+@ApiTags('accountgroups')
 export class AccountgroupsController {
   constructor(private readonly accountgroupsService: AccountgroupsService) {}
-
-  @Post()
-  create(@Body() createAccountgroupDto: CreateAccountgroupDto) {
-    return this.accountgroupsService.create(createAccountgroupDto);
-  }
 
   @Get()
   findAll() {
@@ -22,9 +26,14 @@ export class AccountgroupsController {
     return this.accountgroupsService.findOne(+id);
   }
 
+  @Post()
+  create(@Body() accountgroup: Accountgroup) {
+    return this.accountgroupsService.create(accountgroup);
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccountgroupDto: UpdateAccountgroupDto) {
-    return this.accountgroupsService.update(+id, updateAccountgroupDto);
+  update(@Param('id') id: string, @Body() accountgroup: Partial<Accountgroup>) {
+    return this.accountgroupsService.update(+id, accountgroup);
   }
 
   @Delete(':id')

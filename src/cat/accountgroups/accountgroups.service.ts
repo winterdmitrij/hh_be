@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAccountgroupDto } from './dto/create-accountgroup.dto';
-import { UpdateAccountgroupDto } from './dto/update-accountgroup.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Accountgroup } from './accountgroup.entity';
 
 @Injectable()
 export class AccountgroupsService {
-  create(createAccountgroupDto: CreateAccountgroupDto) {
-    return 'This action adds a new accountgroup';
+  constructor(
+    @InjectRepository(Accountgroup)
+    private readonly accountgroupsRepo: Repository<Accountgroup>,
+  ) {}
+
+  async findAll(): Promise<Accountgroup[]> {
+    return this.accountgroupsRepo.find({ relations: ['accounts'] });
   }
 
-  findAll() {
-    return `This action returns all accountgroups`;
+  async findOne(id: number): Promise<Accountgroup | null> {
+    return this.accountgroupsRepo.findOne({
+      where: { id },
+      relations: ['accounts'],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} accountgroup`;
+  async create(accountgroup: Accountgroup): Promise<Accountgroup> {
+    return this.accountgroupsRepo.save(accountgroup);
   }
 
-  update(id: number, updateAccountgroupDto: UpdateAccountgroupDto) {
-    return `This action updates a #${id} accountgroup`;
+  async update(
+    id: number,
+    accountgroup: Partial<Accountgroup>,
+  ): Promise<Accountgroup | null> {
+    await this.accountgroupsRepo.update(id, accountgroup);
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} accountgroup`;
+  async remove(id: number): Promise<void> {
+    //    await this.accountgroupsRepo.delete(id);
   }
 }
