@@ -4,8 +4,14 @@ import { AppService } from './app.service';
 import { AccountsModule } from './cat/accounts/accounts.module';
 import { AccountgroupsModule } from './cat/accountgroups/accountgroups.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Accountgroup } from './cat/accountgroups/accountgroup.entity';
-import { Account } from './cat/accounts/account.entity';
+import { AccountgroupEntity } from './cat/accountgroups/accountgroup.entity';
+import { AccountEntity } from './cat/accounts/account.entity';
+import { TransactionsModule } from './cat/transactions/transactions.module';
+import { PostgroupsModule } from './cat/postgroups/postgroups.module';
+import { PostsModule } from './cat/posts/posts.module';
+import { TransactionEntity } from './cat/transactions/transaction.entity';
+import { PostgroupEntity } from './cat/postgroups/postgroup.entity';
+import { PostEntity } from './cat/posts/post.entity';
 
 @Module({
   imports: [
@@ -16,11 +22,20 @@ import { Account } from './cat/accounts/account.entity';
       username: 'dmitrij',
       password: '1234',
       database: 'haushalt',
-      entities: [Accountgroup, Account],
+      entities: [
+        AccountgroupEntity,
+        AccountEntity,
+        TransactionEntity,
+        PostgroupEntity,
+        PostEntity,
+      ],
       synchronize: false,
     }),
     AccountsModule,
     AccountgroupsModule,
+    TransactionsModule,
+    PostgroupsModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

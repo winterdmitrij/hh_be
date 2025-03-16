@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
-import { Account } from '../accounts/account.entity';
+import { AccountEntity } from '../accounts/account.entity';
 
 @Entity({ schema: 'cat', name: 'accountgroups' })
-export class Accountgroup {
+export class AccountgroupEntity {
   @PrimaryColumn({ type: 'numeric', precision: 1 })
   id: number;
 
@@ -21,6 +21,6 @@ export class Accountgroup {
   @Column({ type: 'boolean', default: true })
   shw: boolean;
 
-  @OneToMany(() => Account, (account) => account.accountgroup)
-  accounts: Account[];
+  @OneToMany(() => AccountEntity, (account) => account.accountgroup)
+  accounts: AccountEntity[];
 }

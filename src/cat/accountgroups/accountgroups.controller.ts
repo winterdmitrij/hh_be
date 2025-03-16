@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { AccountgroupsService } from './accountgroups.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Accountgroup } from './accountgroup.entity';
+import { AccountgroupEntity } from './accountgroup.entity';
 
 @Controller('accountgroups')
 @ApiTags('accountgroups')
@@ -27,12 +27,15 @@ export class AccountgroupsController {
   }
 
   @Post()
-  create(@Body() accountgroup: Accountgroup) {
+  create(@Body() accountgroup: AccountgroupEntity) {
     return this.accountgroupsService.create(accountgroup);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() accountgroup: Partial<Accountgroup>) {
+  update(
+    @Param('id') id: string,
+    @Body() accountgroup: Partial<AccountgroupEntity>,
+  ) {
     return this.accountgroupsService.update(+id, accountgroup);
   }
 

@@ -1,34 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Accountgroup } from './accountgroup.entity';
+import { AccountgroupEntity } from './accountgroup.entity';
 
 @Injectable()
 export class AccountgroupsService {
   constructor(
-    @InjectRepository(Accountgroup)
-    private readonly accountgroupsRepo: Repository<Accountgroup>,
+    @InjectRepository(AccountgroupEntity)
+    private readonly accountgroupsRepo: Repository<AccountgroupEntity>,
   ) {}
 
-  async findAll(): Promise<Accountgroup[]> {
+  async findAll(): Promise<AccountgroupEntity[]> {
     return this.accountgroupsRepo.find({ relations: ['accounts'] });
   }
 
-  async findOne(id: number): Promise<Accountgroup | null> {
+  async findOne(id: number): Promise<AccountgroupEntity | null> {
     return this.accountgroupsRepo.findOne({
       where: { id },
       relations: ['accounts'],
     });
   }
 
-  async create(accountgroup: Accountgroup): Promise<Accountgroup> {
+  async create(accountgroup: AccountgroupEntity): Promise<AccountgroupEntity> {
     return this.accountgroupsRepo.save(accountgroup);
   }
 
   async update(
     id: number,
-    accountgroup: Partial<Accountgroup>,
-  ): Promise<Accountgroup | null> {
+    accountgroup: Partial<AccountgroupEntity>,
+  ): Promise<AccountgroupEntity | null> {
     await this.accountgroupsRepo.update(id, accountgroup);
     return this.findOne(id);
   }

@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Account } from './account.entity';
+import { AccountEntity } from './account.entity';
 
 @Controller('accounts')
 @ApiTags('accounts')
@@ -27,12 +27,12 @@ export class AccountsController {
   }
 
   @Post()
-  create(@Body() account: Account) {
+  create(@Body() account: AccountEntity) {
     return this.accountsService.create(account);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() account: Partial<Account>) {
+  update(@Param('id') id: string, @Body() account: Partial<AccountEntity>) {
     return this.accountsService.update(+id, account);
   }
 

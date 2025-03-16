@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Accountgroup } from '../accountgroups/accountgroup.entity';
+import { AccountgroupEntity } from '../accountgroups/accountgroup.entity';
 
 @Entity({ schema: 'cat', name: 'accounts' })
-export class Account {
+export class AccountEntity {
   @PrimaryColumn({ type: 'numeric', precision: 3 })
   id: number;
 
@@ -24,9 +24,13 @@ export class Account {
   @Column({ type: 'boolean', default: false })
   sav: boolean;
 
-  @ManyToOne(() => Accountgroup, (accountgroup) => accountgroup.accounts, {
-    nullable: false,
-  })
+  @ManyToOne(
+    () => AccountgroupEntity,
+    (accountgroup) => accountgroup.accounts,
+    {
+      nullable: false,
+    },
+  )
   @JoinColumn({ name: 'ag_id' })
-  accountgroup: Accountgroup;
+  accountgroup: AccountgroupEntity;
 }
