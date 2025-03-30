@@ -1,5 +1,13 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { PostgroupEntity } from '../postgroups/postgroup.entity';
+import { PositionEntity } from 'src/doc/positions/position.entity';
 
 @Entity({ schema: 'cat', name: 'posts' })
 export class PostEntity {
@@ -29,4 +37,8 @@ export class PostEntity {
   })
   @JoinColumn({ name: 'pg_id' })
   postgroup: PostgroupEntity;
+
+  // Beziehung zu doc.positions
+  @OneToMany(() => PositionEntity, (position) => position.post)
+  positions: PositionEntity[];
 }

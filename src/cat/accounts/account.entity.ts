@@ -1,5 +1,13 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { AccountgroupEntity } from '../accountgroups/accountgroup.entity';
+import { PositionEntity } from 'src/doc/positions/position.entity';
 
 @Entity({ schema: 'cat', name: 'accounts' })
 export class AccountEntity {
@@ -33,4 +41,8 @@ export class AccountEntity {
   )
   @JoinColumn({ name: 'ag_id' })
   accountgroup: AccountgroupEntity;
+
+  // Beziehungen zu doc.positions
+  @OneToMany(() => PositionEntity, (position) => position.account)
+  positions: PositionEntity[];
 }

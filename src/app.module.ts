@@ -12,6 +12,14 @@ import { PostsModule } from './cat/posts/posts.module';
 import { TransactionEntity } from './cat/transactions/transaction.entity';
 import { PostgroupEntity } from './cat/postgroups/postgroup.entity';
 import { PostEntity } from './cat/posts/post.entity';
+import { PeriodsModule } from './doc/periods/periods.module';
+import { DocumentsModule } from './doc/documents/documents.module';
+import { PositionsModule } from './doc/positions/positions.module';
+import { PositionDetailsModule } from './doc/position-details/position-details.module';
+import { PeriodEntity } from './doc/periods/period.entity';
+import { DocumentEntity } from './doc/documents/document.entity';
+import { PositionEntity } from './doc/positions/position.entity';
+import { PositionDetailEntity } from './doc/position-details/position-detail.entity';
 
 @Module({
   imports: [
@@ -28,6 +36,10 @@ import { PostEntity } from './cat/posts/post.entity';
         TransactionEntity,
         PostgroupEntity,
         PostEntity,
+        PeriodEntity,
+        DocumentEntity,
+        PositionEntity,
+        PositionDetailEntity,
       ],
       synchronize: false,
     }),
@@ -36,6 +48,10 @@ import { PostEntity } from './cat/posts/post.entity';
     TransactionsModule,
     PostgroupsModule,
     PostsModule,
+    PeriodsModule,
+    DocumentsModule,
+    PositionsModule,
+    PositionDetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
