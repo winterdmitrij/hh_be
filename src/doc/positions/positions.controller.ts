@@ -21,21 +21,21 @@ export class PositionsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.positionsService.findOne(+id);
+    return this.positionsService.findOne(id);
   }
 
   @Post()
-  create(@Body() createPositionDto: PositionEntity) {
-    return this.positionsService.create(createPositionDto);
+  create(@Body() position: PositionEntity) {
+    return this.positionsService.create(position);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePositionDto: PositionEntity) {
-    return this.positionsService.update(+id, updatePositionDto);
+  update(@Param('id') id: string, @Body() position: PositionEntity) {
+    return this.positionsService.update(id, position);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.positionsService.remove(+id);
+    return this.positionsService.remove(id);
   }
 }

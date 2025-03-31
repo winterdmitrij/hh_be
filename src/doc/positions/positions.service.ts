@@ -10,23 +10,32 @@ export class PositionsService {
     private readonly positionsRepo: Repository<PositionEntity>,
   ) {}
 
-  findAll() {
-    return `This action returns all positions`;
+  async findAll(): Promise<PositionEntity[]> {
+    return this.positionsRepo.find({
+      relations: ['document', 'account', 'post', 'positionDetail'],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} position`;
+  async findOne(id: string): Promise<PositionEntity | null> {
+    return this.positionsRepo.findOne({
+      where: { id },
+      relations: ['document', 'account', 'post', 'positionDetail'],
+    });
   }
 
-  create(createPositionDto: PositionEntity) {
-    return 'This action adds a new position';
+  async create(position: PositionEntity): Promise<PositionEntity> {
+    return this.positionsRepo.save(position);
   }
 
-  update(id: number, updatePositionDto: PositionEntity) {
-    return `This action updates a #${id} position`;
+  async update(
+    id: string,
+    position: PositionEntity,
+  ): Promise<PositionEntity | null> {
+    await this.positionsRepo.update(id, position);
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} position`;
+  async remove(id: string): Promise<void> {
+    this.positionsRepo.delete(id);
   }
 }

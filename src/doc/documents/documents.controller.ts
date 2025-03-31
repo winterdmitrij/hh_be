@@ -21,21 +21,21 @@ export class DocumentsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.documentsService.findOne(+id);
+    return this.documentsService.findOne(id);
   }
 
   @Post()
-  create(@Body() createDocumentDto: DocumentEntity) {
-    return this.documentsService.create(createDocumentDto);
+  create(@Body() document: DocumentEntity) {
+    return this.documentsService.create(document);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDocumentDto: DocumentEntity) {
-    return this.documentsService.update(+id, updateDocumentDto);
+  update(@Param('id') id: string, @Body() document: DocumentEntity) {
+    return this.documentsService.update(id, document);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.documentsService.remove(+id);
+    return this.documentsService.remove(id);
   }
 }

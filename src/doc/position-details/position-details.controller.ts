@@ -21,26 +21,26 @@ export class PositionDetailsController {
     return this.positionDetailsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.positionDetailsService.findOne(+id);
+  @Get(':pos_id')
+  findOne(@Param('pos_id') pos_id: string) {
+    return this.positionDetailsService.findOne(pos_id);
   }
 
   @Post()
-  create(@Body() createPositionDetailDto: PositionDetailEntity) {
-    return this.positionDetailsService.create(createPositionDetailDto);
+  create(@Body() positionDetail: PositionDetailEntity) {
+    return this.positionDetailsService.create(positionDetail);
   }
 
-  @Patch(':id')
+  @Patch(':pos_id')
   update(
-    @Param('id') id: string,
-    @Body() updatePositionDetailDto: PositionDetailEntity,
+    @Param('pos_id') pos_id: string,
+    @Body() positionDetail: PositionDetailEntity,
   ) {
-    return this.positionDetailsService.update(+id, updatePositionDetailDto);
+    return this.positionDetailsService.update(pos_id, positionDetail);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.positionDetailsService.remove(+id);
+  @Delete(':pos_id')
+  remove(@Param('pos_id') pos_id: string) {
+    return this.positionDetailsService.remove(pos_id);
   }
 }

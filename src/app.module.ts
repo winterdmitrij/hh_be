@@ -20,6 +20,7 @@ import { PeriodEntity } from './doc/periods/period.entity';
 import { DocumentEntity } from './doc/documents/document.entity';
 import { PositionEntity } from './doc/positions/position.entity';
 import { PositionDetailEntity } from './doc/position-details/position-detail.entity';
+import { OperationsModule } from './grb/operations/operations.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { PositionDetailEntity } from './doc/position-details/position-detail.ent
     DocumentsModule,
     PositionsModule,
     PositionDetailsModule,
+    OperationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

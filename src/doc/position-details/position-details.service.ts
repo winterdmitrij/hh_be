@@ -1,25 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { PositionDetailEntity } from './position-detail.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PositionDetailsService {
-  findAll() {
-    return `This action returns all positionDetails`;
+  constructor(
+    @InjectRepository(PositionDetailEntity)
+    private readonly positionDetailsRepo: Repository<PositionDetailEntity>,
+  ) {}
+
+  async findAll(): Promise<PositionDetailEntity[]> {
+    return this.positionDetailsRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} positionDetail`;
+  async findOne(pos_id: string): Promise<PositionDetailEntity | null> {
+    return this.positionDetailsRepo.findOne({
+      where: { pos_id },
+    });
   }
 
-  create(createPositionDetailDto: PositionDetailEntity) {
-    return 'This action adds a new positionDetail';
+  async create(
+    positionDetail: PositionDetailEntity,
+  ): Promise<PositionDetailEntity> {
+    return this.positionDetailsRepo.save(positionDetail);
   }
 
-  update(id: number, updatePositionDetailDto: PositionDetailEntity) {
-    return `This action updates a #${id} positionDetail`;
+  async update(
+    pos_id: string,
+    positionDetail: PositionDetailEntity,
+  ): Promise<PositionDetailEntity | null> {
+    await this.positionDetailsRepo.update(pos_id, positionDetail);
+    return this.findOne(pos_id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} positionDetail`;
+  async remove(pos_id: string): Promise<void> {
+    this.positionDetailsRepo.delete(pos_id);
   }
 }
