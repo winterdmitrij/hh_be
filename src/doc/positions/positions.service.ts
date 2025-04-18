@@ -7,35 +7,35 @@ import { Repository } from 'typeorm';
 export class PositionsService {
   constructor(
     @InjectRepository(PositionEntity)
-    private readonly positionsRepo: Repository<PositionEntity>,
+    private readonly positionRepo: Repository<PositionEntity>,
   ) {}
 
   async findAll(): Promise<PositionEntity[]> {
-    return this.positionsRepo.find({
+    return this.positionRepo.find({
       relations: ['document', 'account', 'post', 'positionDetail'],
     });
   }
 
   async findOne(id: string): Promise<PositionEntity | null> {
-    return this.positionsRepo.findOne({
+    return this.positionRepo.findOne({
       where: { id },
       relations: ['document', 'account', 'post', 'positionDetail'],
     });
   }
 
   async create(position: PositionEntity): Promise<PositionEntity> {
-    return this.positionsRepo.save(position);
+    return this.positionRepo.save(position);
   }
 
   async update(
     id: string,
     position: PositionEntity,
   ): Promise<PositionEntity | null> {
-    await this.positionsRepo.update(id, position);
+    await this.positionRepo.update(id, position);
     return this.findOne(id);
   }
 
   async remove(id: string): Promise<void> {
-    this.positionsRepo.delete(id);
+    this.positionRepo.delete(id);
   }
 }

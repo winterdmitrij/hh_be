@@ -9,8 +9,10 @@ import {
 } from '@nestjs/common';
 import { PositionsService } from './positions.service';
 import { PositionEntity } from './position.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('positions')
+@ApiTags('positions')
 export class PositionsController {
   constructor(private readonly positionsService: PositionsService) {}
 
@@ -25,8 +27,15 @@ export class PositionsController {
   }
 
   @Post()
-  create(@Body() position: PositionEntity) {
-    return this.positionsService.create(position);
+  async create(@Body() position: PositionEntity) {
+    try {
+      const savedPosition = await this.positionsService.create(position);
+      console.log('Position erfolgreich gespeichert:', savedPosition);
+      return savedPosition;
+    } catch (error) {
+      console.error('Fehler beim Speichern der Position:', error);
+      throw new Error('Fehler beim Speichern der Position');
+    }
   }
 
   @Patch(':id')

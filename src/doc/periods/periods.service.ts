@@ -11,7 +11,7 @@ export class PeriodsService {
   ) {}
 
   async findAll(): Promise<PeriodEntity[]> {
-    return this.periodsRepo.find();
+    return this.periodsRepo.find({order: {prd: 'DESC'}});
   }
 
   async findOne(prd: string): Promise<PeriodEntity | null> {

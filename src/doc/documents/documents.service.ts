@@ -17,7 +17,10 @@ export class DocumentsService {
   async findOne(id: string): Promise<DocumentEntity | null> {
     return this.documentsRepo.findOne({
       where: { id },
-      relations: ['positions'],
+      relations: ['positions',
+'positions.account',
+'positions.post'
+],
     });
   }
 
@@ -25,6 +28,7 @@ export class DocumentsService {
     return this.documentsRepo.save(document);
   }
 
+// ToDo: document: DocumentEntity -> updateData: Partial<DocumentEntity>
   async update(
     id: string,
     document: DocumentEntity,
@@ -32,6 +36,19 @@ export class DocumentsService {
     await this.documentsRepo.update(id, document);
     return this.findOne(id);
   }
+
+/*
+async update(id: string, updateData: Partial<DocumentEntity>): Promise<DocumentEntity> {
+  const doc = await this.documentRepo.findOne({ where: { id } });
+  if (!doc) {
+    throw new NotFoundException('Dokument nicht gefunden');
+  }
+
+  Object.assign(doc, updateData); // Nur die übergebenen Felder aktualisieren
+
+  return this.documentRepo.save(doc);
+}
+*/
 
   async remove(id: string): Promise<void> {
     // this.documentsRepo.delete(id);
