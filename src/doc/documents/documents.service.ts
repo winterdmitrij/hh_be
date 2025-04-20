@@ -28,27 +28,13 @@ export class DocumentsService {
     return this.documentsRepo.save(document);
   }
 
-// ToDo: document: DocumentEntity -> updateData: Partial<DocumentEntity>
   async update(
     id: string,
-    document: DocumentEntity,
+    data: Partial<DocumentEntity>,
   ): Promise<DocumentEntity | null> {
-    await this.documentsRepo.update(id, document);
+    await this.documentsRepo.update(id, data);
     return this.findOne(id);
   }
-
-/*
-async update(id: string, updateData: Partial<DocumentEntity>): Promise<DocumentEntity> {
-  const doc = await this.documentRepo.findOne({ where: { id } });
-  if (!doc) {
-    throw new NotFoundException('Dokument nicht gefunden');
-  }
-
-  Object.assign(doc, updateData); // Nur die übergebenen Felder aktualisieren
-
-  return this.documentRepo.save(doc);
-}
-*/
 
   async remove(id: string): Promise<void> {
     // this.documentsRepo.delete(id);

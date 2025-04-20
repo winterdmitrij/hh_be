@@ -31,17 +31,10 @@ export class DocumentsController {
     return this.documentsService.create(document);
   }
 
-// ToDo: document: DocumentEntity -> document: Partial<DocumentEntity>
   @Patch(':id')
-  update(@Param('id') id: string, @Body() document: DocumentEntity) {
+  update(@Param('id') id: string, @Body() document: Partial<DocumentEntity>) {
     return this.documentsService.update(id, document);
   }
-  /*
-@Patch(':id')
-update(@Param('id') id: string, @Body() document: Partial<DocumentEntity>) {
-  return this.documentsService.update(id, document);
-}
-  */
 
   @Delete(':id')
   remove(@Param('id') id: string) {

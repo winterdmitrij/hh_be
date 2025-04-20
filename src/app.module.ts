@@ -21,6 +21,8 @@ import { DocumentEntity } from './doc/documents/document.entity';
 import { PositionEntity } from './doc/positions/position.entity';
 import { PositionDetailEntity } from './doc/position-details/position-detail.entity';
 import { OperationsModule } from './grb/operations/operations.module';
+import { InformationsModule } from './cat/informations/informations.module';
+import { InformationEntity } from './cat/informations/information.entity';
 
 @Module({
   imports: [
@@ -37,6 +39,7 @@ import { OperationsModule } from './grb/operations/operations.module';
         TransactionEntity,
         PostgroupEntity,
         PostEntity,
+        InformationEntity,
         PeriodEntity,
         DocumentEntity,
         PositionEntity,
@@ -49,6 +52,7 @@ import { OperationsModule } from './grb/operations/operations.module';
     TransactionsModule,
     PostgroupsModule,
     PostsModule,
+    InformationsModule,
     PeriodsModule,
     DocumentsModule,
     PositionsModule,

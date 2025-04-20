@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 import { PostgroupEntity } from '../postgroups/postgroup.entity';
+import { InformationEntity } from '../informations/information.entity';
 
 @Entity({ schema: 'cat', name: 'transactions' })
 export class TransactionEntity {
@@ -14,4 +15,8 @@ export class TransactionEntity {
 
   @OneToMany(() => PostgroupEntity, (postgroup) => postgroup.transaction)
   postgroups: PostgroupEntity[];
+
+  // One-to-One Beziehung zur Informations-Tabelle
+  @OneToOne(() => InformationEntity, (information) => information.transaction)
+  information: InformationEntity;
 }

@@ -4,10 +4,12 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
 } from 'typeorm';
 import { AccountgroupEntity } from '../accountgroups/accountgroup.entity';
 import { PositionEntity } from 'src/doc/positions/position.entity';
+import { InformationEntity } from '../informations/information.entity';
 
 @Entity({ schema: 'cat', name: 'accounts' })
 export class AccountEntity {
@@ -45,4 +47,8 @@ export class AccountEntity {
   // Beziehungen zu doc.positions
   @OneToMany(() => PositionEntity, (position) => position.account)
   positions: PositionEntity[];
+
+  // One-to-One Beziehung zur Informations-Tabelle
+  @OneToOne(() => InformationEntity, (information) => information.account)
+  information: InformationEntity;
 }
