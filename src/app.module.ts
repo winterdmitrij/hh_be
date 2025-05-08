@@ -23,6 +23,13 @@ import { PositionDetailEntity } from './doc/position-details/position-detail.ent
 import { OperationsModule } from './grb/operations/operations.module';
 import { InformationsModule } from './cat/informations/informations.module';
 import { InformationEntity } from './cat/informations/information.entity';
+import { OperationEntity } from './grb/operations/operation.entity';
+import { MonthBalancesModule } from './rpt/month-balances/month-balances.module';
+import { TransactionsDetailsModule } from './rpt/transactions-details/transactions-details.module';
+import { PostsBalancesModule } from './rpt/posts-balances/posts-balances.module';
+import { AccountsBalancesModule } from './rpt/accounts-balances/accounts-balances.module';
+import { MonthBalanceEntity } from './rpt/month-balances/month-balance.entity';
+import { TransactionsDetailEntity } from './rpt/transactions-details/transactions-detail.entity';
 
 @Module({
   imports: [
@@ -44,6 +51,9 @@ import { InformationEntity } from './cat/informations/information.entity';
         DocumentEntity,
         PositionEntity,
         PositionDetailEntity,
+        OperationEntity,
+        MonthBalanceEntity,
+        TransactionsDetailEntity,
       ],
       synchronize: false,
     }),
@@ -58,6 +68,10 @@ import { InformationEntity } from './cat/informations/information.entity';
     PositionsModule,
     PositionDetailsModule,
     OperationsModule,
+    MonthBalancesModule,
+    TransactionsDetailsModule,
+    PostsBalancesModule,
+    AccountsBalancesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

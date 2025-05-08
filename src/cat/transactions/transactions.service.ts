@@ -11,13 +11,13 @@ export class TransactionsService {
   ) {}
 
   async findAll(): Promise<TransactionEntity[]> {
-    return this.transactionsRepo.find({ relations: ['postgroups'] });
+    return this.transactionsRepo.find({ relations: ['postgroups', 'postgroups.posts'] });
   }
 
   async findOne(id: number): Promise<TransactionEntity | null> {
     return this.transactionsRepo.findOne({
       where: { id },
-      relations: ['postgroups'],
+      relations: ['postgroups', 'postgroups.posts'],
     });
   }
 }

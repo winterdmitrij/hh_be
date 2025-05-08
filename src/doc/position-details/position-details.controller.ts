@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException
 } from '@nestjs/common';
 import { PositionDetailsService } from './position-details.service';
 import { PositionDetailEntity } from './position-detail.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('position-details')
+@ApiTags('position-details')
 export class PositionDetailsController {
   constructor(
     private readonly positionDetailsService: PositionDetailsService,
@@ -22,8 +25,13 @@ export class PositionDetailsController {
   }
 
   @Get(':pos_id')
-  findOne(@Param('pos_id') pos_id: string) {
-    return this.positionDetailsService.findOne(pos_id);
+  async findOne(@Param('pos_id') pos_id: string) {
+    const detail = await this.positionDetailsService.findOne(pos_id);
+
+    if (!detail) {
+      throw new NotFoundException(`PositionDetail mit ID ${pos_id} nicht gefunden`);
+    }
+    return detail;
   }
 
   @Post()

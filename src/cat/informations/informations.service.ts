@@ -18,6 +18,7 @@ export class InformationsService {
 
   async findOne(typ: string): Promise<InformationEntity | null> {
     return this.informationRepo.findOne({
+      where: { typ },
       relations: ['account', 'transaction'],
     });
   }
