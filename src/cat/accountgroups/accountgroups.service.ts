@@ -33,6 +33,7 @@ export class AccountgroupsService {
     return this.findOne(id);
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async remove(id: number): Promise<void> {
     //    await this.accountgroupsRepo.delete(id);
   }

@@ -17,13 +17,11 @@ export class DocumentsService {
   async findOne(id: string): Promise<DocumentEntity | null> {
     return this.documentsRepo.findOne({
       where: { id },
-      relations: ['positions',
-'positions.account',
-'positions.post'
-],
+      relations: ['positions', 'positions.account', 'positions.post'],
     });
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async create(document: DocumentEntity): Promise<DocumentEntity> {
     return this.documentsRepo.save(document);
   }
@@ -36,6 +34,7 @@ export class DocumentsService {
     return this.findOne(id);
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async remove(id: string): Promise<void> {
     // this.documentsRepo.delete(id);
   }

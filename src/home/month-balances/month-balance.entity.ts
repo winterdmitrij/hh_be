@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn, ViewEntity } from 'typeorm';
+import { Column, PrimaryColumn, ViewEntity } from 'typeorm';
 
 @ViewEntity({ schema: 'rpt', name: 'month_balances_v' })
 export class MonthBalanceEntity {

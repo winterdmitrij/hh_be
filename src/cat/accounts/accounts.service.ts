@@ -33,6 +33,7 @@ export class AccountsService {
     return this.findOne(id);
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async remove(id: number): Promise<void> {
     //    await this.accountsRepo.delete(id);
   }

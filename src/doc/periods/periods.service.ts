@@ -11,15 +11,17 @@ export class PeriodsService {
   ) {}
 
   async findAll(): Promise<PeriodEntity[]> {
-    return this.periodsRepo.find({order: {prd: 'DESC'}});
+    return this.periodsRepo.find({ order: { prd: 'DESC' } });
   }
 
+  //?
   async findOne(prd: string): Promise<PeriodEntity | null> {
     return this.periodsRepo.findOne({
       where: { prd },
     });
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async create(period: PeriodEntity): Promise<PeriodEntity> {
     return this.periodsRepo.save(period);
   }
@@ -32,6 +34,7 @@ export class PeriodsService {
     return this.findOne(prd);
   }
 
+  //ToDo: Brauche ich nicht - löschen
   async remove(prd: string): Promise<void> {
     //await this.periodsRepo.delete(prd);
   }

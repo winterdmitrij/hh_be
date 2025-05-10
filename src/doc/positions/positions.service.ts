@@ -10,6 +10,7 @@ export class PositionsService {
     private readonly positionRepo: Repository<PositionEntity>,
   ) {}
 
+  //ToDo: Brauche ich nicht? - löschen?
   async findAll(): Promise<PositionEntity[]> {
     return this.positionRepo.find({
       relations: ['document', 'account', 'post', 'positionDetail'],

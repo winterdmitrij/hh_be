@@ -10,6 +10,7 @@ export class PositionDetailsService {
     private readonly positionDetailsRepo: Repository<PositionDetailEntity>,
   ) {}
 
+  //ToDo: Brauche ich nicht - löschen
   async findAll(): Promise<PositionDetailEntity[]> {
     return this.positionDetailsRepo.find();
   }
@@ -34,6 +35,7 @@ export class PositionDetailsService {
     return this.findOne(pos_id);
   }
 
+  //ToDo: Brauche ich nicht? - löschen?
   async remove(pos_id: string): Promise<void> {
     this.positionDetailsRepo.delete(pos_id);
   }

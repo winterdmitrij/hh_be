@@ -8,6 +8,7 @@ import { InformationEntity } from './information.entity';
 export class InformationsController {
   constructor(private readonly informationsService: InformationsService) {}
 
+  //ToDo: vllt durch View lösen?
   @Get()
   findAll(): Promise<InformationEntity[]> {
     return this.informationsService.findAll();

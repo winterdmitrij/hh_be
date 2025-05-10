@@ -24,12 +24,12 @@ import { OperationsModule } from './grb/operations/operations.module';
 import { InformationsModule } from './cat/informations/informations.module';
 import { InformationEntity } from './cat/informations/information.entity';
 import { OperationEntity } from './grb/operations/operation.entity';
-import { MonthBalancesModule } from './rpt/month-balances/month-balances.module';
-import { TransactionsDetailsModule } from './rpt/transactions-details/transactions-details.module';
+import { MonthBalancesModule } from './home/month-balances/month-balances.module';
+import { TransactionsDetailsModule } from './home/transactions-details/transactions-details.module';
 import { PostsBalancesModule } from './rpt/posts-balances/posts-balances.module';
 import { AccountsBalancesModule } from './rpt/accounts-balances/accounts-balances.module';
-import { MonthBalanceEntity } from './rpt/month-balances/month-balance.entity';
-import { TransactionsDetailEntity } from './rpt/transactions-details/transactions-detail.entity';
+import { MonthBalanceEntity } from './home/month-balances/month-balance.entity';
+import { TransactionsDetailEntity } from './home/transactions-details/transactions-detail.entity';
 
 @Module({
   imports: [
