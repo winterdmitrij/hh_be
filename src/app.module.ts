@@ -30,6 +30,8 @@ import { PostsBalancesModule } from './rpt/posts-balances/posts-balances.module'
 import { AccountsBalancesModule } from './rpt/accounts-balances/accounts-balances.module';
 import { MonthBalanceEntity } from './home/month-balances/month-balance.entity';
 import { TransactionsDetailEntity } from './home/transactions-details/transactions-detail.entity';
+import { MonthDocumentsModule } from './rpt/month-documents/month-documents.module';
+import { MonthDocumentEntity } from './rpt/month-documents/month-document.entity';
 
 @Module({
   imports: [
@@ -48,6 +50,7 @@ import { TransactionsDetailEntity } from './home/transactions-details/transactio
         PostEntity,
         InformationEntity,
         PeriodEntity,
+        MonthDocumentEntity,
         DocumentEntity,
         PositionEntity,
         PositionDetailEntity,
@@ -64,6 +67,7 @@ import { TransactionsDetailEntity } from './home/transactions-details/transactio
     PostsModule,
     InformationsModule,
     PeriodsModule,
+    MonthDocumentsModule,
     DocumentsModule,
     PositionsModule,
     PositionDetailsModule,
