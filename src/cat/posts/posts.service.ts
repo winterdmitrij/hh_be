@@ -11,7 +11,7 @@ export class PostsService {
   ) {}
 
   async findAll(): Promise<PostEntity[]> {
-    return this.postsRepo.find({ relations: ['postgroup'] });
+    return this.postsRepo.find({ relations: ['postgroup', 'postgroup.transaction'] });
   }
 
   async findOne(id: number): Promise<PostEntity | null> {

@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, PrimaryColumn, ViewEntity } from 'typeorm';
 
-@Entity({ schema: 'doc', name: 'periods' })
+@ViewEntity({ schema: 'doc', name: 'periods_v' })
 export class PeriodEntity {
   @PrimaryColumn({ type: 'varchar', length: 4 })
   prd: string;
@@ -10,4 +10,16 @@ export class PeriodEntity {
 
   @Column({ type: 'boolean', default: false })
   act: boolean;
+
+  @Column({ type: 'numeric' })
+  year: number;
+
+  @Column({ type: 'numeric' })
+  mnt: number;
+
+  @Column({ type: 'text' })
+  mon: string;
+
+  @Column({ type: 'date' })
+  doc_dat: Date;
 }

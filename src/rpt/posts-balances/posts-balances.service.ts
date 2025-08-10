@@ -13,6 +13,7 @@ export class PostsBalancesService {
   findAllBy(year: number) {
     return this.postsBalancesRepo.find({
       where: { year },
+      order: { pst_id: 'ASC' },
     });
   }
 }

@@ -13,6 +13,7 @@ export class AccountsBalancesService {
   async findAllBy(year: number): Promise<AccountsBalanceEntity[]> {
     return this.accountsBalancesRepo.find({
       where: { year },
+      order: { acc_id: 'ASC' },
     });
   }
 }
