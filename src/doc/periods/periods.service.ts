@@ -27,10 +27,15 @@ export class PeriodsService {
 
   async update(
     prd: string,
-    period: PeriodEntity,
+    period: { cls?: boolean; act?: boolean },
   ): Promise<PeriodEntity | null> {
-    await this.periodsRepo.update(prd, period);
-    return this.findOne(prd);
+    return this.periodsRepo.query(
+      `UPDATE doc.periods
+       SET cls = $1, act = $2
+       WHERE prd = $3
+       RETURNING *`,
+      [period.cls, period.act, prd],
+    );
   }
 
   //?
